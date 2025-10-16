@@ -29,6 +29,7 @@ public class test implements ActionListener {
 	public JButton btnTotal, btnAdd, btnDel, btnSearch, btnCancel;
 	String driver = "oracle.jdbc.OracleDriver";
 	String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+    // String user, password는 본인 계정으로 변경 후 사용
 	String user = "system";
 	String password = "123456";
 	Connection conn = null;
@@ -286,10 +287,11 @@ public class test implements ActionListener {
 		}
 	}
 	
-
+    // InterFace ActionListener의 추상메서드 재정의 ------------------------------------------
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
+		// 전체보기
 		if(e.getSource() == btnTotal) {
 			setText(TOTAL);
 			frame.setTitle("전체내용 보기");
@@ -297,6 +299,7 @@ public class test implements ActionListener {
 			System.out.println("전체보기 버튼");
 		}
 		
+        // 데이터 추가
 		else if(e.getSource() == btnAdd) {
 			if(cmd != ADD) {
 				frame.setTitle("데이터추가");
@@ -307,7 +310,8 @@ public class test implements ActionListener {
 			frame.setTitle("데이터 추가되었음");
 			System.out.println("추가 버튼");
 		}
-			
+		
+        // 데이터 삭제
 		else if(e.getSource() == btnDel) {
 			if(cmd != DELETE) {
 				frame.setTitle("데이터삭제");
@@ -319,6 +323,7 @@ public class test implements ActionListener {
 			System.out.println("삭제 버튼");
 		}
 		
+        // 데이터 검색
 		else if(e.getSource() == btnSearch) {
 			if(cmd != SEARCH) {
 				frame.setTitle("데이터검색");
@@ -329,6 +334,7 @@ public class test implements ActionListener {
 			System.out.println("검색 버튼");
 		}
 		
+        // 취소
 		setText(NONE);
 	}
 }
