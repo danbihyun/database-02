@@ -213,10 +213,12 @@ public class test implements ActionListener {
 		System.out.println("DB 삭제");
 	}
 	
+    // DB 전체보기 부분 -------------------------------------------------------------
 	public void total() {
 		System.out.println("DB 전체보기");
 	}
 	
+    // DB 검색 부분 -------------------------------------------------------------
 	public void search() {
 		System.out.println("DB 검색");
 	}
