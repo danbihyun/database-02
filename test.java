@@ -231,14 +231,56 @@ public class test implements ActionListener {
 		}
 	}
 	
-    // DB 전체보기 부분 -------------------------------------------------------------
+	// DB 전체보기 부분 -------------------------------------------------------------
 	public void total() {
-		System.out.println("DB 전체보기");
+		try {
+			// DB 가져옴
+			String sql = "select * from customer";
+			// 정적인 문장통
+			pstmtse = conn.prepareStatement(sql); 
+			// 정적인 문장통
+			pstmtseScroll = conn.prepareStatement(
+					sql, 
+					ResultSet.TYPE_SCROLL_SENSITIVE, 
+					ResultSet.CONCUR_UPDATABLE
+					);
+			// 정적인 결과통
+			rs = pstmtse.executeQuery();
+			// 동적인 결과통
+			rsScroll = pstmtseScroll.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-    // DB 검색 부분 -------------------------------------------------------------
+	// DB 검색 부분 (미완성... 심지어 오류뜸...) ----------------------------------------------------
 	public void search() {
-		System.out.println("DB 검색");
+		try {
+			// DB 가져옴
+			String sql = "select * from customer where name = ?";
+			String strName = txtName.getText();
+			if(strName.length() < 1) {
+				JOptionPane.showMessageDialog(null, "이름은 필수입니다.");
+				return;
+			}
+			
+			// 정적인 문장통
+			pstmtse = conn.prepareStatement(sql); 
+			// 정적인 문장통
+			pstmtseScroll = conn.prepareStatement(
+					sql, 
+					ResultSet.TYPE_SCROLL_SENSITIVE, 
+					ResultSet.CONCUR_UPDATABLE
+					);
+			// 정적인 결과통
+			rs = pstmtse.executeQuery();
+			// 동적인 결과통
+			rsScroll = pstmtseScroll.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setText(int command) {
