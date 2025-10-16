@@ -211,7 +211,24 @@ public class test implements ActionListener {
 	
 	// DB 삭제 부분 -------------------------------------------------------------
 	public void del() {
-		System.out.println("DB 삭제");
+		try {
+			String sql = "delete from customer where code = ?";
+			String strNo = txtNo.getText();
+			if(strNo.length() < 1) {
+				JOptionPane.showMessageDialog(null, "번호는 필수입니다.");
+				return;
+			}
+			
+			pstmtde = conn.prepareStatement(sql);
+			pstmtde.setInt(1, Integer.valueOf(strNo));
+			int r = pstmtde.executeUpdate();
+			
+			if(r >= 1) JOptionPane.showMessageDialog(null, "DB 삭제 성공");
+			else JOptionPane.showMessageDialog(null, "DB 삭제 실패");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
     // DB 전체보기 부분 -------------------------------------------------------------
